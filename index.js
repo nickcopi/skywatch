@@ -11,6 +11,7 @@ const init = async ()=>{
 	Object.entries(items).forEach(([id,item])=>{
 		item.id = id;
 		calcCost(item);
+		if(item.buy < item.sell) console.log((item.name?item.name:item.id) + ' making ' + (item.sell - item.buy).toFixed(2));
 	});
 }
 
@@ -21,7 +22,7 @@ const calcCost = item=>{
 		if(!component.checked) calcCost(component);
 		price += items[component.id].buy * component.quantity;
 	});
-	console.log(`${item.id}: sell for ${item.sell} make for ${price} making a profit of ${item.sell - price}`);
+	if(price < item.buy) item.buy = price;
 	item.calced = true;
 }
 init();
