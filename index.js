@@ -11,7 +11,11 @@ const init = async ()=>{
 	Object.entries(items).forEach(([id,item])=>{
 		item.id = id;
 		calcCost(item);
-		if(item.buy < item.sell) console.log((item.name?item.name:item.id) + ' making ' + (item.sell - item.buy).toFixed(2));
+		//if(item.buy < item.sell) 
+		//console.log((item.name?item.name:item.id) + ' making ' + (item.sell - item.buy).toFixed(2));
+	});
+	Object.values(items).sort((a,b)=>(a.sell-a.buy)-(b.sell-b.buy)).forEach(item=>{
+		console.log((item.name?item.name:item.id) + ' making ' + (item.sell - item.buy).toFixed(2));
 	});
 }
 
